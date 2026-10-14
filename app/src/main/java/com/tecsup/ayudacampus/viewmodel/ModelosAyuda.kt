@@ -10,5 +10,7 @@ class ModelosAyuda(private val repo: AyudaRepository, private val prefs: Prefere
     fun misTickets(usuario: Usuario) = AyudaViewModelFactory { MisTicketsViewModel(repo, usuario) }
     fun nuevoTicket(usuario: Usuario) = AyudaViewModelFactory { NuevoTicketViewModel(repo, prefs, usuario) }
     fun detalle(usuario: Usuario, id: Int) = AyudaViewModelFactory { TicketDetalleViewModel(repo, usuario, id) }
+    fun panel() = AyudaViewModelFactory { PanelViewModel(repo) }
+    fun bandeja() = AyudaViewModelFactory { BandejaViewModel(repo) }
     fun categorias() = AyudaViewModelFactory { CategoriasViewModel(repo) }
 }

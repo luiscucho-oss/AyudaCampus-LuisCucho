@@ -102,8 +102,14 @@ fun NavAyuda(sesion: SesionViewModel, modelos: ModelosAyuda) {
                     }
                     composable(Rutas.PERFIL)  { Text("Perfil") }
                 } else {
-                    composable(Rutas.PANEL)  { Text("Panel de soporte") }
-                    composable(Rutas.BANDEJA)  { Text("Tickets") }
+                    composable(Rutas.PANEL) { entry ->
+                        val vm: PanelViewModel = viewModel(entry, factory = modelos.panel())
+                        PanelScreen(vm, { nav.navigate(Rutas.BANDEJA) }, { nav.navigate(Rutas.atender(it)) })
+                    }
+                    composable(Rutas.BANDEJA) { entry ->
+                        val vm: BandejaViewModel = viewModel(entry, factory = modelos.bandeja())
+                        BandejaScreen(vm) { nav.navigate(Rutas.atender(it)) }
+                    }
                     composable(Rutas.ATENDER, arguments = listOf(navArgument("id") { type = NavType.IntType }))  { Text("Atender ticket") }
                     composable(Rutas.CATEGORIAS) { entry ->
                         val vm: CategoriasViewModel = viewModel(entry, factory = modelos.categorias())
