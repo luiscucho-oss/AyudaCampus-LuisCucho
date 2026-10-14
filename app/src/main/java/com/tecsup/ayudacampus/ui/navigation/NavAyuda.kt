@@ -110,13 +110,22 @@ fun NavAyuda(sesion: SesionViewModel, modelos: ModelosAyuda) {
                         val vm: BandejaViewModel = viewModel(entry, factory = modelos.bandeja())
                         BandejaScreen(vm) { nav.navigate(Rutas.atender(it)) }
                     }
-                    composable(Rutas.ATENDER, arguments = listOf(navArgument("id") { type = NavType.IntType }))  { Text("Atender ticket") }
+                    composable(Rutas.ATENDER, arguments = listOf(navArgument("id") { type = NavType.IntType })) { entry ->
+                        val vm: AtenderViewModel = viewModel(entry, factory = modelos.atender(actual, entry.arguments!!.getInt("id")))
+                        AtenderTicketScreen(vm) { nav.popBackStack() }
+                    }
                     composable(Rutas.CATEGORIAS) { entry ->
                         val vm: CategoriasViewModel = viewModel(entry, factory = modelos.categorias())
                         CategoriasScreen(vm, { nav.navigate(Rutas.editarCategoria(it)) }, { nav.navigate(Rutas.NUEVA_CATEGORIA) })
                     }
-                    composable(Rutas.NUEVA_CATEGORIA)  { Text("Nueva categoría") }
-                    composable(Rutas.EDITAR_CATEGORIA, arguments = listOf(navArgument("id") { type = NavType.IntType }))  { Text("Editar categoría") }
+                    composable(Rutas.NUEVA_CATEGORIA) { entry ->
+                        val vm: CategoriasViewModel = viewModel(entry, factory = modelos.categorias())
+                        FormularioCategoriaScreen(vm, null) { nav.popBackStack() }
+                    }
+                    composable(Rutas.EDITAR_CATEGORIA, arguments = listOf(navArgument("id") { type = NavType.IntType })) { entry ->
+                        val vm: CategoriasViewModel = viewModel(entry, factory = modelos.categorias())
+                        FormularioCategoriaScreen(vm, entry.arguments!!.getInt("id")) { nav.popBackStack() }
+                    }
                     composable(Rutas.AJUSTES)  { Text("Ajustes") }
                 }
             }
