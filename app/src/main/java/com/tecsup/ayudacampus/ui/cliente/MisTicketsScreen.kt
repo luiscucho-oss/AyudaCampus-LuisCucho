@@ -19,6 +19,7 @@ import com.tecsup.ayudacampus.viewmodel.MisTicketsViewModel
 @Composable
 fun MisTicketsScreen(vm: MisTicketsViewModel, onDetalle: (Int) -> Unit, onNuevo: () -> Unit) {
     val tickets by vm.tickets.collectAsState()
+    val sla by vm.sla.collectAsState()
     val abiertos by vm.abiertos.collectAsState()
     val filtro by vm.estadoFiltro.collectAsState()
     val busqueda by vm.busqueda.collectAsState()
@@ -34,7 +35,7 @@ fun MisTicketsScreen(vm: MisTicketsViewModel, onDetalle: (Int) -> Unit, onNuevo:
             LazyColumn(Modifier.fillMaxWidth().weight(1f).testTag("lista-tickets"), contentPadding = PaddingValues(20.dp, 8.dp, 20.dp, 100.dp),
                 verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 if (tickets.isEmpty()) item { MensajeVacio() }
-                items(tickets, key = { it.ticket.id }) { detalle -> TicketCard(detalle, { onDetalle(detalle.ticket.id) }) }
+                items(tickets, key = { it.ticket.id }) { detalle -> TicketCard(detalle, { onDetalle(detalle.ticket.id) }, sla = sla[detalle.ticket.id]) }
             }
         }
         FloatingActionButton(onClick = onNuevo, modifier = Modifier.align(Alignment.BottomEnd).padding(20.dp),

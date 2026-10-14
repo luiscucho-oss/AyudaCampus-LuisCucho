@@ -22,6 +22,7 @@ import com.tecsup.ayudacampus.viewmodel.TicketDetalleViewModel
 @Composable
 fun DetalleTicketScreen(vm: TicketDetalleViewModel, onVolver: () -> Unit) {
     val detalle by vm.ticket.collectAsState()
+    val sla by vm.sla.collectAsState()
     val error by vm.error.collectAsState()
     var comentario by rememberSaveable { mutableStateOf("") }
     var comentarioFinal by rememberSaveable { mutableStateOf("") }
@@ -50,6 +51,7 @@ fun DetalleTicketScreen(vm: TicketDetalleViewModel, onVolver: () -> Unit) {
                 Text(actual.ticket.descripcion, style = MaterialTheme.typography.bodySmall)
             }
             StepperTicket(actual.ticket.estado)
+            sla?.let { IndicadorSla(it) }
             if (resuelto) {
                 Surface(shape = RoundedCornerShape(14.dp), color = colorEstado(EstadoTicket.RESUELTO.name).copy(alpha = .13f)) {
                     Row(Modifier.fillMaxWidth().padding(14.dp), verticalAlignment = Alignment.CenterVertically,

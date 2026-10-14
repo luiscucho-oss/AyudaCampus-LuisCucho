@@ -35,6 +35,8 @@ class MisTicketsViewModel(repo: AyudaRepository, val usuario: Usuario) : ViewMod
         }
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), emptyList())
 
+    val sla = tickets.slaParaLista(viewModelScope)
+
     fun filtrar(estado: EstadoTicket?) { _estadoFiltro.value = estado }
     fun buscar(texto: String) { _busqueda.value = texto }
 }

@@ -32,6 +32,8 @@ class TicketDetalleViewModel(
         }
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
 
+    val sla = ticket.slaParaTicket(viewModelScope)
+
     private fun permitido(detalle: TicketConDetalle): Boolean =
         usuario.rol == Rol.ADMIN.name ||
             (usuario.rol == Rol.CLIENTE.name && detalle.ticket.clienteId == usuario.id)

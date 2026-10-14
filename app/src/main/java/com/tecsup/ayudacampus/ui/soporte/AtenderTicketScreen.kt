@@ -19,6 +19,7 @@ import com.tecsup.ayudacampus.viewmodel.AtenderViewModel
 @Composable
 fun AtenderTicketScreen(vm: AtenderViewModel, onVolver: () -> Unit) {
     val detalle by vm.ticket.collectAsState()
+    val sla by vm.sla.collectAsState()
     val estado by vm.estadoSeleccionado.collectAsState()
     val prioridad by vm.prioridadSeleccionada.collectAsState()
     val error by vm.error.collectAsState()
@@ -45,6 +46,7 @@ fun AtenderTicketScreen(vm: AtenderViewModel, onVolver: () -> Unit) {
                         style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     Text(actual.ticket.descripcion, style = MaterialTheme.typography.bodySmall)
                 }
+                sla?.let { IndicadorSla(it) }
                 TituloSeccion("Estado")
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(5.dp)) {
                     EstadoTicket.entries.forEach { opcion ->

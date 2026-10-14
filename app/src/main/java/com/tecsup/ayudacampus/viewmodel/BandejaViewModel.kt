@@ -20,5 +20,7 @@ class BandejaViewModel(repo: AyudaRepository) : ViewModel() {
         if (estado == null) lista else lista.filter { it.ticket.estado == estado.name }
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), emptyList())
 
+    val sla = tickets.slaParaLista(viewModelScope)
+
     fun filtrar(estado: EstadoTicket?) { _estadoFiltro.value = estado }
 }

@@ -23,6 +23,7 @@ class AtenderViewModel(
 ) : ViewModel() {
     private val _ticket = MutableStateFlow<TicketConDetalle?>(null)
     val ticket = _ticket.asStateFlow()
+    val sla = ticket.slaParaTicket(viewModelScope)
     private val _estadoSeleccionado = MutableStateFlow(EstadoTicket.ABIERTO)
     val estadoSeleccionado = _estadoSeleccionado.asStateFlow()
     private val _prioridadSeleccionada = MutableStateFlow(Prioridad.MEDIA)

@@ -21,6 +21,7 @@ import com.tecsup.ayudacampus.data.local.entity.Comentario
 import com.tecsup.ayudacampus.data.local.relation.TicketConDetalle
 import com.tecsup.ayudacampus.model.EstadoTicket
 import com.tecsup.ayudacampus.model.Prioridad
+import com.tecsup.ayudacampus.model.SlaTicket
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -59,7 +60,7 @@ private fun Etiqueta(texto: String, color: Color) {
 @Composable fun PrioridadChip(prioridad: String) { Etiqueta(Prioridad.entries.firstOrNull { it.name == prioridad }?.etiqueta ?: prioridad, colorPrioridad(prioridad)) }
 
 @Composable
-fun TicketCard(detalle: TicketConDetalle, onClick: () -> Unit, mostrarCliente: Boolean = false) {
+fun TicketCard(detalle: TicketConDetalle, onClick: () -> Unit, mostrarCliente: Boolean = false, sla: SlaTicket? = null) {
     val t = detalle.ticket
     OutlinedCard(onClick = onClick, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(12.dp), colors = CardDefaults.outlinedCardColors(containerColor = MaterialTheme.colorScheme.surface), border = androidx.compose.foundation.BorderStroke(1.dp, MaterialTheme.colorScheme.outline)) {
         Row(Modifier.height(IntrinsicSize.Min)) {
@@ -80,6 +81,7 @@ fun TicketCard(detalle: TicketConDetalle, onClick: () -> Unit, mostrarCliente: B
                     Spacer(Modifier.weight(1f))
                     Text(tiempoRelativo(t.fecha), style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
+                sla?.let { IndicadorSla(it) }
             }
         }
     }

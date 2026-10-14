@@ -16,6 +16,7 @@ import com.tecsup.ayudacampus.viewmodel.BandejaViewModel
 @Composable
 fun BandejaScreen(vm: BandejaViewModel, onAtender: (Int) -> Unit) {
     val tickets by vm.tickets.collectAsState()
+    val sla by vm.sla.collectAsState()
     val filtro by vm.estadoFiltro.collectAsState()
     Column(Modifier.fillMaxSize()) {
         AppTopBar("Tickets")
@@ -23,7 +24,7 @@ fun BandejaScreen(vm: BandejaViewModel, onAtender: (Int) -> Unit) {
         LazyColumn(Modifier.fillMaxWidth().weight(1f).testTag("lista-bandeja"), contentPadding = PaddingValues(20.dp, 10.dp, 20.dp, 20.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp)) {
             if (tickets.isEmpty()) item { MensajeVacio("No hay tickets con este filtro") }
-            items(tickets, key = { it.ticket.id }) { TicketCard(it, { onAtender(it.ticket.id) }, mostrarCliente = true) }
+            items(tickets, key = { it.ticket.id }) { TicketCard(it, { onAtender(it.ticket.id) }, mostrarCliente = true, sla = sla[it.ticket.id]) }
         }
     }
 }
