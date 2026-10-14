@@ -8,5 +8,6 @@ import com.tecsup.ayudacampus.data.repository.AyudaRepository
 class ModelosAyuda(private val repo: AyudaRepository, private val prefs: PreferenciasStore) {
     fun sesion() = AyudaViewModelFactory { SesionViewModel(repo, prefs) }
     fun misTickets(usuario: Usuario) = AyudaViewModelFactory { MisTicketsViewModel(repo, usuario) }
+    fun nuevoTicket(usuario: Usuario) = AyudaViewModelFactory { NuevoTicketViewModel(repo, prefs, usuario) }
     fun categorias() = AyudaViewModelFactory { CategoriasViewModel(repo) }
 }

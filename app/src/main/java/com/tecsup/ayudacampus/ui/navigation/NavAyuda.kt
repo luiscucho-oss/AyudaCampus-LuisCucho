@@ -90,7 +90,12 @@ fun NavAyuda(sesion: SesionViewModel, modelos: ModelosAyuda) {
                         val vm: MisTicketsViewModel = viewModel(entry, factory = modelos.misTickets(actual))
                         MisTicketsScreen(vm, { nav.navigate(Rutas.detalle(it)) }, { nav.navigate(Rutas.NUEVO) })
                     }
-                    composable(Rutas.NUEVO)  { Text("Nuevo ticket") }
+                    composable(Rutas.NUEVO) { entry ->
+                        val vm: NuevoTicketViewModel = viewModel(entry, factory = modelos.nuevoTicket(actual))
+                        NuevoTicketScreen(vm, { nav.popBackStack() }, {
+                            nav.navigate(Rutas.TICKETS) { popUpTo(Rutas.TICKETS) { inclusive = true }; launchSingleTop = true }
+                        })
+                    }
                     composable(Rutas.DETALLE, arguments = listOf(navArgument("id") { type = NavType.IntType }))  { Text("Detalle del ticket") }
                     composable(Rutas.PERFIL)  { Text("Perfil") }
                 } else {
