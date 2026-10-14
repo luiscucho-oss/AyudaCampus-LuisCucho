@@ -220,6 +220,53 @@ class ReglasTicketTest {
         assertEquals(listOf(3, 1), vm.tickets.value.map { it.ticket.id })
     }
 
+    @Test fun bandejaCombinaEstadoPrioridadCategoriaYTextoYRestableceAtomicamente() = runTest {
+        val repo = RepositoryPrueba(listOf(
+            detalle(id = 12, prioridad = Prioridad.ALTA, titulo = "Pantalla sin imagen"),
+            detalle(id = 11, prioridad = Prioridad.MEDIA),
+            detalle(id = 10, estado = EstadoTicket.CERRADO, prioridad = Prioridad.BAJA),
+        ))
+        val vm = BandejaViewModel(repo)
+        backgroundScope.launch(UnconfinedTestDispatcher(testScheduler)) { vm.tickets.collect {} }
+        vm.filtrar(EstadoTicket.ABIERTO); vm.filtrarPrioridad(Prioridad.ALTA); vm.filtrarCategoria(1); vm.buscar("  PANTALLA  ")
+        runCurrent()
+        assertEquals(listOf(12), vm.tickets.value.map { it.ticket.id })
+        assertEquals(4, vm.filtros.value.activos)
+        vm.filtrarCategoria(999); runCurrent()
+        assertTrue(vm.tickets.value.isEmpty())
+        vm.limpiarFiltros(); runCurrent()
+        assertEquals(listOf(12, 11, 10), vm.tickets.value.map { it.ticket.id })
+        assertEquals(0, vm.filtros.value.activos)
+    }
+
+    @Test fun bandejaBuscaNumeroConCerosNombreSinAcentosYConservaCategoriasInactivas() = runTest {
+        val original = detalle(id = 12, cliente = estudiante.copy(nombre = "Juan Pérez")).copy(categoria = categoria.copy(activa = false))
+        val repo = RepositoryPrueba(listOf(original, detalle(id = 5)))
+        repo.categorias.value = listOf(categoria.copy(activa = false))
+        val vm = BandejaViewModel(repo)
+        backgroundScope.launch(UnconfinedTestDispatcher(testScheduler)) { vm.tickets.collect {} }
+        backgroundScope.launch(UnconfinedTestDispatcher(testScheduler)) { vm.categorias.collect {} }
+        for (texto in listOf(" #0012 ", "12", "  JUAN PEREZ  ")) {
+            vm.buscar(texto); runCurrent()
+            assertEquals(listOf(12), vm.tickets.value.map { it.ticket.id })
+        }
+        vm.filtrarCategoria(1); runCurrent()
+        assertFalse(vm.categorias.value.single().activa)
+        assertEquals(listOf(12), vm.tickets.value.map { it.ticket.id })
+        vm.buscar("Sin coincidencias"); runCurrent()
+        assertTrue(vm.tickets.value.isEmpty())
+    }
+
+    @Test fun bandejaReaccionaADatosConFiltrosActivosSinReordenar() = runTest {
+        val repo = RepositoryPrueba(listOf(detalle(id = 3, prioridad = Prioridad.ALTA), detalle(id = 2), detalle(id = 1)))
+        val vm = BandejaViewModel(repo)
+        backgroundScope.launch(UnconfinedTestDispatcher(testScheduler)) { vm.tickets.collect {} }
+        vm.filtrarPrioridad(Prioridad.MEDIA); runCurrent()
+        assertEquals(listOf(2, 1), vm.tickets.value.map { it.ticket.id })
+        repo.actualizar(2) { it.copy(prioridad = "ALTA") }; runCurrent()
+        assertEquals(listOf(1), vm.tickets.value.map { it.ticket.id })
+    }
+
     @Test fun categoriasValidaNombreIconoYExplicaCategoriaEnUso() = runTest {
         val repo = RepositoryPrueba(listOf(detalle()))
         val vm = CategoriasViewModel(repo)

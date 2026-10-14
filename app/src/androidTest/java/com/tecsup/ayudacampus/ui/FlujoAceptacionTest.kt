@@ -275,11 +275,11 @@ class FlujoAceptacionTest {
     }
 
     private fun esperarTag(tag: String) {
-        compose.waitUntil(20_000) { compose.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty() }
+        compose.waitUntil(20_000) { runCatching { compose.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty() }.getOrDefault(false) }
     }
 
     private fun esperarTexto(texto: String, substring: Boolean = false) {
-        compose.waitUntil(20_000) { compose.onAllNodesWithText(texto, substring = substring).fetchSemanticsNodes().isNotEmpty() }
+        compose.waitUntil(20_000) { runCatching { compose.onAllNodesWithText(texto, substring = substring).fetchSemanticsNodes().isNotEmpty() }.getOrDefault(false) }
     }
 
     private fun esperarEstado(id: Int, esperado: EstadoTicket) {
