@@ -287,6 +287,11 @@ private fun detalle(
 )
 
 private class RepositoryPrueba(iniciales: List<TicketConDetalle>) : AyudaRepository {
+    override fun observarPromedioResolucion(): Flow<Double?> = lista.map { detalles ->
+        detalles.mapNotNull { d -> d.ticket.fechaCierre?.takeIf {
+            d.ticket.estado == EstadoTicket.CERRADO.name && it >= d.ticket.fecha
+        }?.minus(d.ticket.fecha)?.toDouble() }.takeIf { it.isNotEmpty() }?.average()
+    }
     val lista = MutableStateFlow(iniciales)
     val categorias = MutableStateFlow(listOf(categoria))
     val operaciones = mutableListOf<String>()

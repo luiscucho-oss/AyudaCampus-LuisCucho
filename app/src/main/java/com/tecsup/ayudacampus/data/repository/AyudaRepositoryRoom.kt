@@ -14,6 +14,7 @@ import com.tecsup.ayudacampus.model.Rol
 import kotlinx.coroutines.flow.Flow
 
 class AyudaRepositoryRoom(db: AyudaDatabase) : AyudaRepository {
+    override fun observarPromedioResolucion(): Flow<Double?> = tickets.promedioResolucion()
     private val usuarios = db.usuarioDao()
     private val categorias = db.categoriaDao()
     private val tickets = db.ticketDao()

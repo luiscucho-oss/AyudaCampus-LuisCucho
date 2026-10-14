@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.tecsup.ayudacampus.data.repository.AyudaRepository
 import com.tecsup.ayudacampus.model.DatoGrafico
 import com.tecsup.ayudacampus.model.EstadoTicket
+import com.tecsup.ayudacampus.model.PromedioResolucion
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.SharingStarted
@@ -18,6 +19,8 @@ import kotlinx.coroutines.flow.stateIn
 @OptIn(ExperimentalCoroutinesApi::class)
 class PanelViewModel(repo: AyudaRepository) : ViewModel() {
     private val mientrasVisible = SharingStarted.WhileSubscribed(5_000)
+    val promedioResolucion = repo.observarPromedioResolucion().map(PromedioResolucion::desde)
+        .stateIn(viewModelScope, mientrasVisible, PromedioResolucion.Cargando)
     val abiertos = repo.observarCantidadPorEstado(EstadoTicket.ABIERTO)
         .stateIn(viewModelScope, mientrasVisible, 0)
     val enProceso = repo.observarCantidadPorEstado(EstadoTicket.EN_PROCESO)

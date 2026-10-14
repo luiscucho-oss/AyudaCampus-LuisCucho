@@ -10,6 +10,7 @@ import com.tecsup.ayudacampus.model.Rol
 import kotlinx.coroutines.flow.Flow
 
 interface AyudaRepository {
+    fun observarPromedioResolucion(): Flow<Double?>
     suspend fun login(correo: String, clave: String): Usuario?
     suspend fun obtenerUsuario(id: Int): Usuario?
     suspend fun obtenerUsuarioPorRol(rol: Rol): Usuario?

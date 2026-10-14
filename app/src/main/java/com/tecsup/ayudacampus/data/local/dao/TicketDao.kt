@@ -12,6 +12,9 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TicketDao {
+    @Query("SELECT AVG(fechaCierre - fecha) FROM tickets WHERE estado = 'CERRADO' AND fechaCierre IS NOT NULL AND fechaCierre >= fecha")
+    fun promedioResolucion(): Flow<Double?>
+
     @Insert
     suspend fun insertarTicket(t: Ticket): Long
 

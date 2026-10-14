@@ -40,6 +40,30 @@ class DatabaseIntegrationTest {
     private lateinit var db: AyudaDatabase
     private lateinit var repo: AyudaRepositoryRoom
 
+    @Test fun promedioSoloIncluyeCierresValidosYDevuelveNullSinDatos() = runBlocking {
+        db.openHelper.writableDatabase.execSQL("UPDATE tickets SET estado = 'ABIERTO', fechaCierre = NULL")
+        assertNull(repo.observarPromedioResolucion().first())
+        db.openHelper.writableDatabase.execSQL("UPDATE tickets SET estado = 'CERRADO', fecha = 1000000, fechaCierre = 4600000 WHERE id = 12")
+        db.openHelper.writableDatabase.execSQL("UPDATE tickets SET estado = 'CERRADO', fecha = 1000000, fechaCierre = 11800000 WHERE id = 11")
+        db.openHelper.writableDatabase.execSQL("UPDATE tickets SET estado = 'CERRADO', fechaCierre = NULL WHERE id = 9")
+        db.openHelper.writableDatabase.execSQL("UPDATE tickets SET estado = 'CERRADO', fecha = 1000000, fechaCierre = 1 WHERE id = 14")
+        db.openHelper.writableDatabase.execSQL("UPDATE tickets SET estado = 'RESUELTO', fecha = 1000000, fechaCierre = 100000000 WHERE id = 13")
+        assertEquals(7_200_000.0, requireNotNull(repo.observarPromedioResolucion().first()), .001)
+    }
+
+    @Test fun promedioSeActualizaAlCerrarYReabrirSinReiniciar() = runBlocking {
+        db.openHelper.writableDatabase.execSQL("UPDATE tickets SET estado = 'ABIERTO', fechaCierre = NULL")
+        val valores = Channel<Double?>(Channel.UNLIMITED)
+        val observador = launch(Dispatchers.IO) { repo.observarPromedioResolucion().collect { valores.send(it) } }
+        try {
+            assertNull(withTimeout(30_000) { valores.receive() })
+            db.ticketDao().cerrar(12, 5, requireNotNull(repo.observarTicket(12).first()).ticket.fecha + 3_600_000)
+            assertEquals(3_600_000.0, requireNotNull(withTimeout(30_000) { valores.receive() }), .001)
+            repo.reabrir(12)
+            assertNull(withTimeout(30_000) { valores.receive() })
+        } finally { observador.cancelAndJoin(); valores.close() }
+    }
+
     @Before
     fun preparar() = runBlocking {
         db = Room.inMemoryDatabaseBuilder(
