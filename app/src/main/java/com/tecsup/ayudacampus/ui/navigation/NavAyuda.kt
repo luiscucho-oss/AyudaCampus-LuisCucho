@@ -86,7 +86,10 @@ fun NavAyuda(sesion: SesionViewModel, modelos: ModelosAyuda) {
         ) { padding ->
             NavHost(nav, startDestination = inicio, modifier = Modifier.fillMaxSize().padding(padding)) {
                 if (!soporte) {
-                    composable(Rutas.TICKETS)  { Text("Mis tickets") }
+                    composable(Rutas.TICKETS) { entry ->
+                        val vm: MisTicketsViewModel = viewModel(entry, factory = modelos.misTickets(actual))
+                        MisTicketsScreen(vm, { nav.navigate(Rutas.detalle(it)) }, { nav.navigate(Rutas.NUEVO) })
+                    }
                     composable(Rutas.NUEVO)  { Text("Nuevo ticket") }
                     composable(Rutas.DETALLE, arguments = listOf(navArgument("id") { type = NavType.IntType }))  { Text("Detalle del ticket") }
                     composable(Rutas.PERFIL)  { Text("Perfil") }
