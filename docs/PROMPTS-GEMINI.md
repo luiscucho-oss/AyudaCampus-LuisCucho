@@ -2,7 +2,9 @@
 
 Proyecto: AyudaCampus · Luis Cucho
 
-Úsalos en orden, uno por uno. Antes de empezar, verifica que `main` esté limpio y crea la rama:
+**Plantillas de referencia.** La rama `mejora-ia` ya implementa estas tres mejoras. El registro de lo realizado está en [PROMPTS.md](../PROMPTS.md).
+
+Para reproducir el ejercicio en otro clon, úsalos en orden, uno por uno. Antes de empezar, verifica que `main` esté limpio y crea la rama:
 
 ```bash
 git switch main

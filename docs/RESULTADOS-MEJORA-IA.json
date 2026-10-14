@@ -1,0 +1,339 @@
+{
+  "fecha": "2026-10-14",
+  "autor": "Luis Cucho",
+  "rama": "mejora-ia",
+  "total": 53,
+  "fallos": 0,
+  "jvm": {
+    "pruebas": 25,
+    "fallos": 0
+  },
+  "instrumentadas": {
+    "pruebas": 28,
+    "fallos": 0
+  },
+  "lint": {
+    "errores": 0,
+    "advertencias": 16
+  },
+  "casos": [
+    {
+      "clase": "com.tecsup.ayudacampus.data.DatabaseIntegrationTest",
+      "prueba": "comentarioEmiteActualizacionEnElFlowDeLaRelacion",
+      "resultado": "OK",
+      "tipo": "instrumentada"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.data.DatabaseIntegrationTest",
+      "prueba": "promedioSeActualizaAlCerrarYReabrirSinReiniciar",
+      "resultado": "OK",
+      "tipo": "instrumentada"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.data.DatabaseIntegrationTest",
+      "prueba": "bandejaOrdenaPrioridadYLuegoFechaDescendente",
+      "resultado": "OK",
+      "tipo": "instrumentada"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.data.DatabaseIntegrationTest",
+      "prueba": "borrarTicketEliminaComentariosEnCascada",
+      "resultado": "OK",
+      "tipo": "instrumentada"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.data.DatabaseIntegrationTest",
+      "prueba": "crearTicketYEditarCategoriaConservaRelaciones",
+      "resultado": "OK",
+      "tipo": "instrumentada"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.data.DatabaseIntegrationTest",
+      "prueba": "promedioSoloIncluyeCierresValidosYDevuelveNullSinDatos",
+      "resultado": "OK",
+      "tipo": "instrumentada"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.data.DatabaseIntegrationTest",
+      "prueba": "categoriaConTicketsNoSeEliminaPeroPuedeDesactivarse",
+      "resultado": "OK",
+      "tipo": "instrumentada"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.data.DatabaseIntegrationTest",
+      "prueba": "cierreGuardaCalificacionYFechaYReaperturaLasLimpia",
+      "resultado": "OK",
+      "tipo": "instrumentada"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.data.DatabaseIntegrationTest",
+      "prueba": "siembraEsCompletaEIdempotente",
+      "resultado": "OK",
+      "tipo": "instrumentada"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.data.DatabaseIntegrationTest",
+      "prueba": "panelIncluyeCategoriasSinTicketsYCuentaAlertasPorAntiguedad",
+      "resultado": "OK",
+      "tipo": "instrumentada"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.data.DatabaseIntegrationTest",
+      "prueba": "clavesForaneasRechazanTicketsHuerfanos",
+      "resultado": "OK",
+      "tipo": "instrumentada"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.data.PersistenciaProcesoTest",
+      "prueba": "conservaTicketsConversacionYSesionAlAbrirOtroProceso",
+      "resultado": "OK",
+      "tipo": "instrumentada"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.ui.FlujoAceptacionTest",
+      "prueba": "cicloDeAtencionCategoriasYPreferencias",
+      "resultado": "OK",
+      "tipo": "instrumentada"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.ui.MejorasAceptacionTest",
+      "prueba": "indicadoresReactivosFiltrosCombinadosYSlaEnAmbosPerfiles",
+      "resultado": "OK",
+      "tipo": "instrumentada"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.SesionYFormularioTest",
+      "prueba": "validacionUsaTextoRecortadoYLongitudesMinimas",
+      "resultado": "OK",
+      "tipo": "instrumentada"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.SesionYFormularioTest",
+      "prueba": "loginValidaCamposCredencialesYPerfilSinGuardarSesionIncorrecta",
+      "resultado": "OK",
+      "tipo": "instrumentada"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.SesionYFormularioTest",
+      "prueba": "ticketValidoSeGuardaAbiertoConPrioridadElegidaYEvitaDobleEnvio",
+      "resultado": "OK",
+      "tipo": "instrumentada"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.SesionYFormularioTest",
+      "prueba": "estudianteNoPuedeModificarRecepcionDeTickets",
+      "resultado": "OK",
+      "tipo": "instrumentada"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.SesionYFormularioTest",
+      "prueba": "categoriaDesactivadaDespuesDeElegirlaImpideElEnvio",
+      "resultado": "OK",
+      "tipo": "instrumentada"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.SesionYFormularioTest",
+      "prueba": "perfilSoporteNoPuedeCrearTicketDesdeFormulario",
+      "resultado": "OK",
+      "tipo": "instrumentada"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.SesionYFormularioTest",
+      "prueba": "cerrarSesionBorraIdentidadYConservaModoOscuro",
+      "resultado": "OK",
+      "tipo": "instrumentada"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.SesionYFormularioTest",
+      "prueba": "perfilCuentaSoloTicketsDelEstudianteActivo",
+      "resultado": "OK",
+      "tipo": "instrumentada"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.SesionYFormularioTest",
+      "prueba": "restauracionConUsuarioInexistenteNoDejaIdentidadAnterior",
+      "resultado": "OK",
+      "tipo": "instrumentada"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.SesionYFormularioTest",
+      "prueba": "mesaCerradaMientrasSeCompletaFormularioImpideCrearTicket",
+      "resultado": "OK",
+      "tipo": "instrumentada"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.SesionYFormularioTest",
+      "prueba": "restauracionConRolAjenoLimpiaSesionYTerminaSplash",
+      "resultado": "OK",
+      "tipo": "instrumentada"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.SesionYFormularioTest",
+      "prueba": "formularioVacioMuestraErroresPorCampoSinCrearTicket",
+      "resultado": "OK",
+      "tipo": "instrumentada"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.SesionYFormularioTest",
+      "prueba": "cambioDePerfilYPreferenciasSeRestauranEnNuevoViewModel",
+      "resultado": "OK",
+      "tipo": "instrumentada"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.SesionYFormularioTest",
+      "prueba": "longitudesMinimasExactasSonValidasYUbicacionEsOpcional",
+      "resultado": "OK",
+      "tipo": "instrumentada"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.model.SlaTicketTest",
+      "prueba": "prioridadesUsanCuatroVeinticuatroYSetentaYDosHoras",
+      "resultado": "OK",
+      "tipo": "jvm"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.model.SlaTicketTest",
+      "prueba": "ultimoCuartoAdvierteYFraccionesDeMinutoSeRedondeanHaciaArriba",
+      "resultado": "OK",
+      "tipo": "jvm"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.model.SlaTicketTest",
+      "prueba": "resueltosYCerradosNoCuentanYReabiertoRetomaFechaOriginal",
+      "resultado": "OK",
+      "tipo": "jvm"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.model.SlaTicketTest",
+      "prueba": "vencimientoExactoYTiempoVencidoNoMuestranNegativos",
+      "resultado": "OK",
+      "tipo": "jvm"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.model.SlaTicketTest",
+      "prueba": "cambiarPrioridadConservaLaFechaOriginal",
+      "resultado": "OK",
+      "tipo": "jvm"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.ReglasTicketTest",
+      "prueba": "soporteActualizaEstadoYPrioridadPeroNoEligeCerrado",
+      "resultado": "OK",
+      "tipo": "jvm"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.ReglasTicketTest",
+      "prueba": "reabrirResueltoLimpiaCalificacionYFechaCierre",
+      "resultado": "OK",
+      "tipo": "jvm"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.ReglasTicketTest",
+      "prueba": "misTicketsCombinaPropiedadBusquedaYEstadoIncluyeCerradosEnTodos",
+      "resultado": "OK",
+      "tipo": "jvm"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.ReglasTicketTest",
+      "prueba": "estudianteNoPuedeAtenderDesdeViewModelSoporte",
+      "resultado": "OK",
+      "tipo": "jvm"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.ReglasTicketTest",
+      "prueba": "cierreGuardaCalificacionFechaYComentarioFinalAntesDelCierre",
+      "resultado": "OK",
+      "tipo": "jvm"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.ReglasTicketTest",
+      "prueba": "soporteNoPuedeCerrarNiReabrirComoEstudiante",
+      "resultado": "OK",
+      "tipo": "jvm"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.ReglasTicketTest",
+      "prueba": "bandejaCombinaEstadoPrioridadCategoriaYTextoYRestableceAtomicamente",
+      "resultado": "OK",
+      "tipo": "jvm"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.ReglasTicketTest",
+      "prueba": "categoriasValidaNombreIconoYExplicaCategoriaEnUso",
+      "resultado": "OK",
+      "tipo": "jvm"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.ReglasTicketTest",
+      "prueba": "bandejaReaccionaADatosConFiltrosActivosSinReordenar",
+      "resultado": "OK",
+      "tipo": "jvm"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.ReglasTicketTest",
+      "prueba": "bandejaBuscaNumeroConCerosNombreSinAcentosYConservaCategoriasInactivas",
+      "resultado": "OK",
+      "tipo": "jvm"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.ReglasTicketTest",
+      "prueba": "comentarioNuevoNoBorraSeleccionesPendientesDeSoporte",
+      "resultado": "OK",
+      "tipo": "jvm"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.ReglasTicketTest",
+      "prueba": "cerradoEsInmutableParaAmbosPerfiles",
+      "resultado": "OK",
+      "tipo": "jvm"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.ReglasTicketTest",
+      "prueba": "comentariosVaciosSeIgnoranYLaConversacionSeOrdena",
+      "resultado": "OK",
+      "tipo": "jvm"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.ReglasTicketTest",
+      "prueba": "bandejaConservaOrdenDelRepositoryAlFiltrar",
+      "resultado": "OK",
+      "tipo": "jvm"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.ReglasTicketTest",
+      "prueba": "estudianteNoVeNiModificaTicketsAjenos",
+      "resultado": "OK",
+      "tipo": "jvm"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.ReglasTicketTest",
+      "prueba": "panelCuentaEstadosYCategoriasYAlertasAltasAbiertasAntiguas",
+      "resultado": "OK",
+      "tipo": "jvm"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.ReglasTicketTest",
+      "prueba": "cerrarExigeEstadoResueltoYCalificacionValida",
+      "resultado": "OK",
+      "tipo": "jvm"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.FlujosSlaTest",
+      "prueba": "relojActualizaTodasLasTarjetasSinEscriturasYSeDetieneSinObservadores",
+      "resultado": "OK",
+      "tipo": "jvm"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.model.PromedioResolucionTest",
+      "prueba": "formateaHorasMinutosYDuracionesCortas",
+      "resultado": "OK",
+      "tipo": "jvm"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.model.PromedioResolucionTest",
+      "prueba": "sinCierresNoSePresentaComoCero",
+      "resultado": "OK",
+      "tipo": "jvm"
+    }
+  ]
+}

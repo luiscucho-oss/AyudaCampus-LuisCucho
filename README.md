@@ -41,6 +41,9 @@ Kotlin 2.0.21, Jetpack Compose, Material 3, Navigation Compose, MVVM + Repositor
 | RF21 | Permitir a Soporte abrir o cerrar la recepción de tickets; mostrar “Mesa de ayuda cerrada” e impedir nuevas incidencias si está desactivada. |
 | RF22 | Persistir usuarios, categorías, tickets y comentarios en Room; sembrar los datos ficticios una sola vez. |
 | RF23 | Ofrecer navegación con tres destinos de Estudiante y cuatro de Soporte, temas cian/violeta y estados vacíos. |
+| RF24 | Mostrar el tiempo promedio entre creación y cierre de tickets CERRADOS válidos; actualizar el indicador automáticamente y distinguir ausencia de datos. |
+| RF25 | Mostrar SLA por prioridad (Alta 4 h, Media 24 h, Baja 72 h) en tarjetas y detalles, con aviso de vencimiento y mensajes finales para resueltos/cerrados. |
+| RF26 | Combinar estado, prioridad, categoría y búsqueda por título, número o estudiante en la bandeja; incluir categorías inactivas y permitir limpiar todos los filtros. |
 
 ## Arquitectura MVVM + Repository
 
@@ -74,7 +77,8 @@ com.tecsup.ayudacampus
 │   │   └── DatosIniciales.kt
 │   ├── repository/       AyudaRepository, AyudaRepositoryRoom
 │   └── prefs/            PreferenciasStore
-├── model/                Rol, EstadoTicket, Prioridad, ConteoCategoria, DatoGrafico
+├── model/                Rol, EstadoTicket, Prioridad, ConteoCategoria, DatoGrafico,
+│                         PromedioResolucion, SlaTicket, FiltrosBandeja
 ├── viewmodel/            Sesion, MisTickets, NuevoTicket, TicketDetalle,
 │                         Panel, Bandeja, Atender, Categorias y fábricas
 └── ui
@@ -138,6 +142,26 @@ La suite local verifica reglas de tickets, propiedad, permisos de los roles, bú
 3. Sin calificación, el cierre incumpliría la regla y dejaría incompleta la evaluación de la atención.
 4. Cambiaría la implementación del Repository para acceder al servidor; conservaría la interface y las pantallas.
 
-## Ramas y trabajo de la segunda fase
+## Ramas y mejoras de la segunda fase
 
-`main` contiene la aplicación completa de la primera fase. Los [tres prompts para Gemini](docs/PROMPTS-GEMINI.md) están preparados para continuar el trabajo en Android Studio. La segunda fase se desarrolla desde `main` en `mejora-ia`, con al menos tres mejoras y un `PROMPTS.md` que registre los prompts realmente utilizados, los resultados y las correcciones.
+`main` conserva la aplicación de la primera fase. `mejora-ia` incluye exactamente tres mejoras de la guía:
+
+| Mejora | Resultado |
+|---|---|
+| Promedio de resolución | Tarjeta destacada del panel con la media de `fechaCierre - fecha` de los tickets CERRADOS válidos. |
+| Contador SLA | Tiempo restante y barra por prioridad en las tarjetas y ambos detalles; aviso en el último 25 % del plazo y al vencer. |
+| Búsqueda avanzada | Estado, prioridad, categoría y texto combinados, contador de resultados y limpieza de filtros. |
+
+El SLA se calcula desde la fecha original; cambiar prioridad o reabrir no reinicia su origen. Se actualiza cada minuto mientras la pantalla está observada. Resueltos y cerrados muestran un mensaje final. La búsqueda acepta `#0012`, `12`, títulos o nombres, sin distinguir mayúsculas ni tildes, y conserva el orden por prioridad/fecha del DAO.
+
+Los [prompts y el registro de implementación](PROMPTS.md) incluyen resultados, ajustes, explicación de MVVM y reflexión de cinco líneas. Se conservan también las [plantillas para Gemini en Android Studio](docs/PROMPTS-GEMINI.md). La validación específica está en [VALIDACION-MEJORA-IA.md](docs/VALIDACION-MEJORA-IA.md).
+
+### Capturas reales de mejora-ia
+
+| Panel: promedio | Bandeja: filtros combinados | Detalle: SLA |
+|---|---|---|
+| ![Promedio](docs/capturas-mejora-ia/01-panel-promedio.png) | ![Búsqueda avanzada](docs/capturas-mejora-ia/02-bandeja-filtros.png) | ![SLA del detalle](docs/capturas-mejora-ia/03-detalle-sla.png) |
+
+| Estudiante: SLA | Tema oscuro |
+|---|---|
+| ![Tarjetas con SLA](docs/capturas-mejora-ia/04-estudiante-sla.png) | ![SLA en tema oscuro](docs/capturas-mejora-ia/05-estudiante-oscuro.png) |
