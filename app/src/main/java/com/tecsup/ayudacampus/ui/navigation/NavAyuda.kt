@@ -100,7 +100,7 @@ fun NavAyuda(sesion: SesionViewModel, modelos: ModelosAyuda) {
                         val vm: TicketDetalleViewModel = viewModel(entry, factory = modelos.detalle(actual, entry.arguments!!.getInt("id")))
                         DetalleTicketScreen(vm) { nav.popBackStack() }
                     }
-                    composable(Rutas.PERFIL)  { Text("Perfil") }
+                    composable(Rutas.PERFIL) { PerfilScreen(sesion) }
                 } else {
                     composable(Rutas.PANEL) { entry ->
                         val vm: PanelViewModel = viewModel(entry, factory = modelos.panel())
@@ -126,7 +126,7 @@ fun NavAyuda(sesion: SesionViewModel, modelos: ModelosAyuda) {
                         val vm: CategoriasViewModel = viewModel(entry, factory = modelos.categorias())
                         FormularioCategoriaScreen(vm, entry.arguments!!.getInt("id")) { nav.popBackStack() }
                     }
-                    composable(Rutas.AJUSTES)  { Text("Ajustes") }
+                    composable(Rutas.AJUSTES) { AjustesScreen(sesion) }
                 }
             }
         }

@@ -9,6 +9,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.core.view.WindowCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tecsup.ayudacampus.model.Rol
@@ -30,6 +31,12 @@ class MainActivity : ComponentActivity() {
                 val sesion: SesionViewModel = viewModel(factory = modelos.sesion())
                 val usuario by sesion.usuarioActual.collectAsStateWithLifecycle()
                 val oscuro by sesion.modoOscuro.collectAsStateWithLifecycle()
+                SideEffect {
+                    WindowCompat.getInsetsController(window, window.decorView).apply {
+                        isAppearanceLightStatusBars = !oscuro
+                        isAppearanceLightNavigationBars = !oscuro
+                    }
+                }
                 AyudaTheme(if (usuario?.rol == Rol.ADMIN.name) Rol.ADMIN else Rol.CLIENTE, oscuro) {
                     NavAyuda(sesion, modelos)
                 }
