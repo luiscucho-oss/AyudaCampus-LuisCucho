@@ -96,7 +96,10 @@ fun NavAyuda(sesion: SesionViewModel, modelos: ModelosAyuda) {
                             nav.navigate(Rutas.TICKETS) { popUpTo(Rutas.TICKETS) { inclusive = true }; launchSingleTop = true }
                         })
                     }
-                    composable(Rutas.DETALLE, arguments = listOf(navArgument("id") { type = NavType.IntType }))  { Text("Detalle del ticket") }
+                    composable(Rutas.DETALLE, arguments = listOf(navArgument("id") { type = NavType.IntType })) { entry ->
+                        val vm: TicketDetalleViewModel = viewModel(entry, factory = modelos.detalle(actual, entry.arguments!!.getInt("id")))
+                        DetalleTicketScreen(vm) { nav.popBackStack() }
+                    }
                     composable(Rutas.PERFIL)  { Text("Perfil") }
                 } else {
                     composable(Rutas.PANEL)  { Text("Panel de soporte") }
