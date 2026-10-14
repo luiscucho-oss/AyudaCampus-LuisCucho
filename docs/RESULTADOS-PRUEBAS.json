@@ -1,0 +1,140 @@
+{
+  "fecha": "2026-10-14",
+  "autor": "Luis Cucho",
+  "jvm": {
+    "pruebas": 14,
+    "fallos": 0
+  },
+  "instrumentadas": {
+    "pruebas": 25,
+    "fallos": 0
+  },
+  "persistencia_entre_procesos": "OK",
+  "casos": [
+    {
+      "clase": "com.tecsup.ayudacampus.data.DatabaseIntegrationTest",
+      "prueba": "bandejaOrdenaPrioridadYLuegoFechaDescendente",
+      "resultado": "OK"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.data.DatabaseIntegrationTest",
+      "prueba": "borrarTicketEliminaComentariosEnCascada",
+      "resultado": "OK"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.data.DatabaseIntegrationTest",
+      "prueba": "categoriaConTicketsNoSeEliminaPeroPuedeDesactivarse",
+      "resultado": "OK"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.data.DatabaseIntegrationTest",
+      "prueba": "cierreGuardaCalificacionYFechaYReaperturaLasLimpia",
+      "resultado": "OK"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.data.DatabaseIntegrationTest",
+      "prueba": "clavesForaneasRechazanTicketsHuerfanos",
+      "resultado": "OK"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.data.DatabaseIntegrationTest",
+      "prueba": "comentarioEmiteActualizacionEnElFlowDeLaRelacion",
+      "resultado": "OK"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.data.DatabaseIntegrationTest",
+      "prueba": "crearTicketYEditarCategoriaConservaRelaciones",
+      "resultado": "OK"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.data.DatabaseIntegrationTest",
+      "prueba": "panelIncluyeCategoriasSinTicketsYCuentaAlertasPorAntiguedad",
+      "resultado": "OK"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.data.DatabaseIntegrationTest",
+      "prueba": "siembraEsCompletaEIdempotente",
+      "resultado": "OK"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.data.PersistenciaProcesoTest",
+      "prueba": "conservaTicketsConversacionYSesionAlAbrirOtroProceso",
+      "resultado": "OK"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.ui.FlujoAceptacionTest",
+      "prueba": "cicloDeAtencionCategoriasYPreferencias",
+      "resultado": "OK"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.SesionYFormularioTest",
+      "prueba": "cambioDePerfilYPreferenciasSeRestauranEnNuevoViewModel",
+      "resultado": "OK"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.SesionYFormularioTest",
+      "prueba": "categoriaDesactivadaDespuesDeElegirlaImpideElEnvio",
+      "resultado": "OK"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.SesionYFormularioTest",
+      "prueba": "cerrarSesionBorraIdentidadYConservaModoOscuro",
+      "resultado": "OK"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.SesionYFormularioTest",
+      "prueba": "estudianteNoPuedeModificarRecepcionDeTickets",
+      "resultado": "OK"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.SesionYFormularioTest",
+      "prueba": "formularioVacioMuestraErroresPorCampoSinCrearTicket",
+      "resultado": "OK"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.SesionYFormularioTest",
+      "prueba": "loginValidaCamposCredencialesYPerfilSinGuardarSesionIncorrecta",
+      "resultado": "OK"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.SesionYFormularioTest",
+      "prueba": "longitudesMinimasExactasSonValidasYUbicacionEsOpcional",
+      "resultado": "OK"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.SesionYFormularioTest",
+      "prueba": "mesaCerradaMientrasSeCompletaFormularioImpideCrearTicket",
+      "resultado": "OK"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.SesionYFormularioTest",
+      "prueba": "perfilCuentaSoloTicketsDelEstudianteActivo",
+      "resultado": "OK"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.SesionYFormularioTest",
+      "prueba": "perfilSoporteNoPuedeCrearTicketDesdeFormulario",
+      "resultado": "OK"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.SesionYFormularioTest",
+      "prueba": "restauracionConRolAjenoLimpiaSesionYTerminaSplash",
+      "resultado": "OK"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.SesionYFormularioTest",
+      "prueba": "restauracionConUsuarioInexistenteNoDejaIdentidadAnterior",
+      "resultado": "OK"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.SesionYFormularioTest",
+      "prueba": "ticketValidoSeGuardaAbiertoConPrioridadElegidaYEvitaDobleEnvio",
+      "resultado": "OK"
+    },
+    {
+      "clase": "com.tecsup.ayudacampus.viewmodel.SesionYFormularioTest",
+      "prueba": "validacionUsaTextoRecortadoYLongitudesMinimas",
+      "resultado": "OK"
+    }
+  ]
+}
