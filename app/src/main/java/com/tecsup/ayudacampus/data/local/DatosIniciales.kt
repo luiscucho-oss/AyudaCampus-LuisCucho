@@ -11,7 +11,13 @@ import com.tecsup.ayudacampus.model.Rol
 
 object DatosIniciales {
     suspend fun sembrar(db: AyudaDatabase) = db.withTransaction {
-        if (db.usuarioDao().contar() != 0) return@withTransaction
+        val gerente = Usuario(3, "Gerente", "gerente@campus.test", "admin", Rol.ADMIN.name)
+        if (db.usuarioDao().contar() != 0) {
+            if (db.usuarioDao().obtener(3) == null) {
+                db.usuarioDao().insertarTodos(listOf(gerente))
+            }
+            return@withTransaction
+        }
 
         val ahora = System.currentTimeMillis()
         val hora = 3_600_000L
@@ -24,7 +30,6 @@ object DatosIniciales {
         ))
         val estudiante = Usuario(1, "Juan Pérez", "juan@campus.test", "1234", Rol.CLIENTE.name)
         val soporte = Usuario(2, "Soporte TI", "soporte@campus.test", "admin", Rol.ADMIN.name)
-        val gerente = Usuario(3, "Gerente", "gerente@campus.test", "admin", Rol.ADMIN.name)
         db.usuarioDao().insertarTodos(listOf(estudiante, soporte, gerente))
 
         val tickets = listOf(
