@@ -24,7 +24,8 @@ object DatosIniciales {
         ))
         val estudiante = Usuario(1, "Juan Pérez", "juan@campus.test", "1234", Rol.CLIENTE.name)
         val soporte = Usuario(2, "Soporte TI", "soporte@campus.test", "admin", Rol.ADMIN.name)
-        db.usuarioDao().insertarTodos(listOf(estudiante, soporte))
+        val gerente = Usuario(3, "Gerente", "gerente@campus.test", "admin", Rol.ADMIN.name)
+        db.usuarioDao().insertarTodos(listOf(estudiante, soporte, gerente))
 
         val tickets = listOf(
             Ticket(12, 1, 3, "Sin Wi-Fi en el laboratorio 3",
